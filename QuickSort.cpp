@@ -1,4 +1,9 @@
-void QuickSort(ElemType A[],int low,int high) {
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+typedef int ElemType;
+int Partition(ElemType A[], int low, int high);
+void QuickSort(ElemType A[], int low, int high) {
 	if(low < high)	//递归跳出的条件
 	//Partition() 是划分操作，将表A[low...high] 划分为满足上述条件的两个字表
 	{
@@ -20,6 +25,24 @@ int Partition(ElemType A[],int low,int high)
 	}
 	A[low] = pivot;				//枢轴元素存放到最终位置
 	return low;					//返回存放枢轴的最终位置
+}
+int main()
+{
+	srand(static_cast<unsigned>(time(0)));
+	int test[10];
+	std::cout << "has a queue:\n";
+	for (int i = 0; i < 10; ++i)
+	{
+		test[i] = rand()%10;
+		std::cout << test[i] << " ";
+	}
+	std::cout << "\nafter quicksort:\n";
+	QuickSort(test, 0, 10);
+	for (int i = 0; i < 10; ++i)
+	{
+		std::cout << test[i] << " ";
+	}
+	return 0;
 }
 /*
  * 空间效率：快速排序是递归的，需要借助工作栈来保存每一层递归调用的必要信息，其

@@ -1,16 +1,39 @@
-void BubbleSort(ElemType A[],int n){
-	//冒泡排序法将序列A中的元素按从小到大排列
-	for(i = 0;i < n-1;i++){
-		flag = false;	//表示本趟冒泡是否发生交换的标志
-		for(j = n-1;j > 1;j --){	//一趟冒泡过程
-			if(A[j-1].key > A[j].key){//若为逆序
-				swap(A[j-1],A[j]);//交换
+/*
+ * 冒泡排序：每次排序后会有一个元素到达指定位置
+ * 每次遍历数组，从中挑选出最值，放到指定位置
+ */
+
+#include <iostream>
+// 从小到大冒泡排序
+void BubbleSort(int A[],int n)
+{
+	bool flag;
+	for (int i = 0; i < n; ++i)
+	{
+		flag = false;
+		for (int j = 1; j < n - i; ++j)
+		{
+			if (A[j - 1] > A[j])
+			{
+				int temp = A[j];
+				A[j] = A[j - 1];
+				A[j - 1] = temp;	
 				flag = true;
 			}
-			if(flag == flase)
-				return;//本趟遍历后没有发生交换，说明表已经有序；
 		}
+		if(!flag)
+			break;
 	}
+}
+int main()
+{
+	int test[] = {3,5,1,4,9,7,6,8,2};
+	BubbleSort(test, 9);
+	for (int i = 0; i < 9; i++)
+	{
+		std::cout << test[i] << " ";
+	}
+	return 0;
 }
 /*
  * 空间效率：仅使用常数个辅助单元，O(1)
